@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :books, only: [:index]
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
+  resources :users
   root to: "books#index"
 
   get 'order_items/create'
@@ -14,8 +15,7 @@ Rails.application.routes.draw do
   get 'carts/show'
 
   get 'books/index'
-
-  resources :users
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
