@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'sessions/new'
+
+  get 'sessions/create'
+
+  get 'sessions/destroy'
+
   resources :books, only: [:index]
   resource :cart, only: [:show]
   resources :order_items, only: [:create, :update, :destroy]
   resources :users
+  resources :sessions
   root to: "books#index"
 
   get 'order_items/create'
@@ -15,6 +22,9 @@ Rails.application.routes.draw do
   get 'carts/show'
 
   get 'books/index'
+  
+  match '/signin', :to => 'sessions#new', :via => [:get, :post]
+  match '/signout', :to => 'sessions#destroy', :via => [:get, :post]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
